@@ -28,3 +28,19 @@ select name from
 employees
 where name like 'A%';
 
+-- Q6 Get customers who have not provided an email address.
+select name, email FROM
+customers
+where email is NULL;
+
+-- Q7 Find all completed orders with amount greater than 1,000.
+select * FROM
+orders
+where status = 'completed' and amount > 1000;
+
+-- Q8 Get products that are either in the Electronics or Clothing category.
+select product_id, category from 
+products
+where category in ('Electronics','Clothing');
+
+
