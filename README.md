@@ -43,4 +43,4 @@
 
 ## 🔗 Connect
 - GitHub: github.com/Karuna9502
-- LinkedIn: [your linkedin]
+- LinkedIn: [www.linkedin.com/in/karuna-kumari-85463a25a]
