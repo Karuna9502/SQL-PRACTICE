@@ -38,6 +38,18 @@ select * FROM
 orders
 where status = 'completed' and amount > 1000;
 
+-- Q9 Find customers aged between 25 and 35 who live in Bangalore.
+select age, name FROM
+customers
+where age BETWEEN 25 and 35
+and city = 'Bangalore';
+
+-- Q10 Find all products that are NOT in the Electronics category.
+SELECT category, product_id FROM
+products
+where category not in ('Electronics');
+
+
 -- Q8 Get products that are either in the Electronics or Clothing category.
 select product_id, category from 
 products
