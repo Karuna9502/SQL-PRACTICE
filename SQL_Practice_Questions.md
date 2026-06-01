@@ -65,5 +65,18 @@ select name, city FROM
 customers
 order by name asc;
 
+-- Q13 Get all orders sorted by order_date (newest first),
+-----then by amount (highest first) for same dates.
+select order_date, order_id, amount FROM
+orders
+order by amount desc, order_date desc;
+
+-- Q14 List all products sorted by category alphabetically,
+----then by price from lowest to highest within each category.
+select name, category, price FROM
+products
+order by category asc, price asc;
+
+
 
 
