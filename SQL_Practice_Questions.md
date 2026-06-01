@@ -55,4 +55,15 @@ select product_id, category from
 products
 where category in ('Electronics','Clothing');
 
+-- Q11 List all employees sorted by salary from highest to lowest.
+SELECT name, salary from
+employees
+order by salary desc;
+
+-- Q12 List all customers alphabetically by name.
+select name, city FROM
+customers
+order by name asc;
+
+
 
