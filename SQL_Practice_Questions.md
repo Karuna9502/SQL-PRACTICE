@@ -77,6 +77,19 @@ select name, category, price FROM
 products
 order by category asc, price asc;
 
+-- Q15 Get employees from the Sales department, sorted by salary descending.
+select name, salary from 
+employees
+where department = 'sales'
+order by salary DESC;
+
+-- Q16 Get the top 5 highest-paid employees.
+select name, salary FROM
+employees
+order by  salary desc
+LIMIT 5;
+
+
 
 
 
