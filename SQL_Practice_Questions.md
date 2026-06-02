@@ -89,6 +89,19 @@ employees
 order by  salary desc
 LIMIT 5;
 
+-- Q17 Get any 3 products from the Electronics category.
+select name, price, category FROM
+products
+where category = 'Electronics'
+limit 3;
+
+-- Q18 Get the 10 most recent orders.
+select order_id, status, order_date FROM
+orders
+order by order_date Desc
+limit 10;
+
+
 
 
 
