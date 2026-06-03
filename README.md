@@ -19,7 +19,7 @@
 | Topic | Level | Status |
 |-------|-------|--------|
 | SELECT, WHERE, ORDER BY | ⭐ Beginner | 🔄 Active |
-| GROUP BY, HAVING | ⭐ Beginner | ⏳ Coming |
+| GROUP BY, HAVING | ⭐ Beginner | 🔄 Active |
 | JOINs (INNER, LEFT, RIGHT) | ⭐⭐ Intermediate | ⏳ Coming |
 | Subqueries | ⭐⭐ Intermediate | ⏳ Coming |
 | Window Functions | ⭐⭐⭐ Advanced | ⏳ Coming |
