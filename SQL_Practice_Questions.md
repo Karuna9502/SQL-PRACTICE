@@ -65,14 +65,12 @@ select name, city FROM
 customers
 order by name asc;
 
--- Q13 Get all orders sorted by order_date (newest first),
------then by amount (highest first) for same dates.
+-- Q13 Get all orders sorted by order_date (newest first),then by amount (highest first) for same dates.
 select order_date, order_id, amount FROM
 orders
 order by amount desc, order_date desc;
 
--- Q14 List all products sorted by category alphabetically,
-----then by price from lowest to highest within each category.
+-- Q14 List all products sorted by category alphabetically,then by price from lowest to highest within each category.
 select name, category, price FROM
 products
 order by category asc, price asc;
@@ -100,6 +98,28 @@ select order_id, status, order_date FROM
 orders
 order by order_date Desc
 limit 10;
+
+-- Q19 Get customers ranked 11 to 20 by age (oldest first). This is page 2 of a 10-per-page result
+select name, age FROM
+customers
+order by age DESC
+LIMIT 10 OFFSET 10;
+
+-- Q20 Get the 3rd and 4th most expensive products.
+select name, price FROM
+products
+order by price DESC
+LIMIT 2 offset 2;
+
+-- Q21 Count the total number of employees in the company.
+SELECT count(employee_id) as total_employee FROM
+employees;
+-------OR---------
+SELECT COUNT(*) AS total_employees
+FROM employees;
+
+
+
 
 
 
