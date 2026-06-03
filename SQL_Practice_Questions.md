@@ -118,6 +118,10 @@ employees;
 SELECT COUNT(*) AS total_employees
 FROM employees;
 
+-- Q22 Count only the completed orders.
+select count(*) as completed_status FROM
+orders
+where status = 'completed';
 
 
 
