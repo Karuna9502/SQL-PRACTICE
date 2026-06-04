@@ -123,6 +123,25 @@ select count(*) as completed_status FROM
 orders
 where status = 'completed';
 
+-- Q23 Count how many customers have provided an email address.
+SELECT count(email) as provided_email
+FROM customers;
+
+-- Q24 Count distinct customers who have placed at least one order.
+SELECT DISTINCT(customer_id) as customer_oderplaced
+FROM orders;
+
+-- Q25 Count how many products are priced above 500.
+select count(*) FROM
+products
+where price > 500;
+
+-- Q26 Count the number of employees in each department.
+select count(*), department as employee_count
+from employees
+GROUP by department;
+
+
 
 
 
