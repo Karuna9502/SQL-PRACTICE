@@ -142,6 +142,30 @@ from employees
 GROUP by department;
 
 
+--Q27 Find the total revenue (SUM of amount) for each order status.
+select status, sum(amount) as total_revenu
+from orders
+group by status;
+
+-- Q28 Count how many customers are in each city.
+select city, count(*) as count_customer
+from customers
+group by city;
+
+--Q29 Find the average price of products in each category.
+select category, ROUND(AVG(price), 2) as avg_price,
+      count(*) as product_count
+from products
+group by category;
+
+-- Q30 Find total sales amount per region, sorted highest first.
+select region, sum(amount) as total_sale
+FROM sales
+group by region
+order by amount DESC;
+
+
+
 
 
 
