@@ -186,6 +186,39 @@ FROM orders
 GROUP BY 1
 ORDER BY month;
 
+-- Q35 Count the number of salespeople who made at least one sale in each region.
+select region, count(DISTINCT emp_id) as  salespeople
+from sales
+group by region;
+
+-- Q36 Find departments that have more than 10 employees.
+select department, count(employee_id) 
+from employees 
+where employee_id 
+group by department
+having count(employee_id) > 10;
+
+-- Q37 Find customers who have placed more than 5 orders in total.
+select customer_id, count(*) as total_orders
+from orders
+GROUP by customer_id
+HAVING count(*) > 5
+order by total_orders DESC;
+
+-- Q38 Find categories where the average product price is above 1,000.
+select category, ROUND(avg(price),2) as avg_price
+from products
+group by category
+having avg(price) > 1000
+
+-- Q39 Find regions where total sales exceeded 500,000.
+select region, sum(amount) as total_sales
+from sales
+group by region
+having sum(amount) > 500000
+order by total_sales desc;
+
+
 
 
 
