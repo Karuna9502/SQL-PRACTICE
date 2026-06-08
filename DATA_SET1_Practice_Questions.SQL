@@ -219,6 +219,36 @@ having sum(amount) > 500000
 order by total_sales desc;
 
 
+-- Q40 Among completed orders only, find customers who spent more than 10,000 total.
+select customer_id, sum(amount) as count_spent 
+from orders
+where status = 'completed'
+group by customer_id
+having sum(amount) > 10000;
+
+-- Q41 Find departments where the average salary is between 40,000 and 80,000.
+select department, ROUND(AVG(salary),2) as avg_salary   
+from employees
+GROUP by department
+having AVG(salary)  BETWEEN 40000 and 80000;
+
+-- Q42 Get the top 3 departments by total salary spend.
+select department, sum(salary) as total_spend
+from employees
+group by department
+order by sum(salary) DESC
+limit 3;
+
+-- Q43 Get the 5 customers with the highest total spend, but only include customers who have placed at least 3 orders.
+select customer_id,  COUNT(*) as orders, sum(amount) as total_spends
+from orders
+group by customer_id
+having COUNT(*) >= 3
+order by sum(amount) DESC
+limit 5;
+
+
+
 
 
 
