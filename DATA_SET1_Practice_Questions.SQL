@@ -247,6 +247,20 @@ having COUNT(*) >= 3
 order by sum(amount) DESC
 limit 5;
 
+-- Q44 Get the 2nd pageof products (10 per page), sorted cheapest first. Page 2 = rows 11–20.
+select name, price
+from products
+order by price Asc
+limit 10 OFFSET 10;
+          
+-- Q45 Count employees per department, but only show departments with 5 or more employees, sorted by count descending.
+select department, count(*) as total_employee
+from employees
+group by department
+having count(*) >= 5
+order by total_employee DESC;
+
+
 
 
 
