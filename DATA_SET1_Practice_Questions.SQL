@@ -260,6 +260,23 @@ group by department
 having count(*) >= 5
 order by total_employee DESC;
 
+-- Q46 Find the top 5 salespeople by total sales amount.
+select emp_id, sum(amount) as total_sale
+from sales
+group by emp_id
+order by total_sale DESC
+limit 5;
+
+-- Q47 Find the total and average order value per month, only for months where total revenue exceeded 50,000.
+SELECT
+  DATE_TRUNC('month', order_date) AS month,
+  SUM(amount)                   AS total_rev,
+  ROUND(AVG(amount), 2)          AS avg_order
+FROM orders
+GROUP BY 1
+HAVING SUM(amount) > 50000
+ORDER BY month;
+
 
 
 
