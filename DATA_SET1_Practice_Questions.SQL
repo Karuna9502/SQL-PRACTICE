@@ -279,6 +279,36 @@ ORDER BY month;
 
 
 
+-- Q47 Count customers per city, but only cities with more than 20 customers. Show top 5 cities.
+select city, count(*) as cust_count
+from customers
+group by city
+having count(*) > 20
+order by cust_count DESC
+limit 5;
+
+-- Q48 Among employees hired after 2020, find departments with average salary above 60,000.
+SELECT department,
+       ROUND(AVG(salary), 2) AS avg_salary,
+       COUNT(*) AS emp_count
+FROM employees
+WHERE hire_date > '2020-12-31'
+GROUP BY department
+HAVING AVG(salary) > 60000;
+
+-- Q49 For each category, find total stock value (price × stock), only for categories with total stock value above 100,000, sorted descending.
+SELECT
+  category,
+  SUM(price * stock) AS stock_value,
+  COUNT(*)           AS products
+FROM products
+GROUP BY category
+HAVING SUM(price * stock) > 100000
+ORDER BY stock_value DESC;
+
+
+
+
 
 
 
