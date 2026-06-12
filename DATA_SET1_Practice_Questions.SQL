@@ -307,6 +307,21 @@ HAVING SUM(price * stock) > 100000
 ORDER BY stock_value DESC;
 
 
+-- Q50  Find the top 3 customers by number of completed orders in 2024, but only include customers who placed at least 2 completed orders
+SELECT
+  customer_id,
+  COUNT(*) AS completed_orders
+FROM orders
+WHERE status = 'completed'
+  AND order_date >= '2024-01-01'
+  AND order_date < '2025-01-01'
+GROUP BY customer_id
+HAVING COUNT(*) >= 2
+ORDER BY completed_orders DESC
+LIMIT 3;
+
+
+
 
 
 
