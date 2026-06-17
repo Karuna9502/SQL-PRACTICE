@@ -20,3 +20,11 @@ from orders o
 inner join customers c
 on o.customer_id = c.customer_id
 where c.city = 'Delhi';
+
+-- Q5. Show product name, category, and total quantity ordered for each product.
+SELECT p.name, p.category, COUNT(o.order_id) AS times_ordered
+FROM orders o
+INNER JOIN products p ON o.product_id = p.product_id
+GROUP BY p.product_id, p.name, p.category
+ORDER BY times_ordered DESC;
+
