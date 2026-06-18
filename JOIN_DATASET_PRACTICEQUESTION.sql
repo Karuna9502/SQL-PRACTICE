@@ -28,3 +28,11 @@ INNER JOIN products p ON o.product_id = p.product_id
 GROUP BY p.product_id, p.name, p.category
 ORDER BY times_ordered DESC;
 
+-- Q6. Find the total revenue generated per customer (name and total). Show only customers who have placed orders.
+select c.name, sum(o.amount) as total_revenue
+from customers c
+INNER JOIN orders o on c.customer_id = o.customer_id
+group by c.customer_id, c.name
+order by total_revenue;
+
+
