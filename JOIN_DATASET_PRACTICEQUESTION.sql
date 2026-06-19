@@ -35,4 +35,12 @@ INNER JOIN orders o on c.customer_id = o.customer_id
 group by c.customer_id, c.name
 order by total_revenue;
 
+-- Q7. Show customer name, product name, and amount for every completed order.
+select c.name as customers, p.name As product_name, o.amount
+from orders o
+inner join customers c  on o.customer_id = c.customer_id
+INNER JOIN products p on p.product_id = o.product_id
+where o.status = 'completed';
+
+
 
