@@ -42,5 +42,12 @@ inner join customers c  on o.customer_id = c.customer_id
 INNER JOIN products p on p.product_id = o.product_id
 where o.status = 'completed';
 
+-- Q8. List each department with the total salary paid and number of employees. Only include departments that have at least one employee.
+select dept, COUNT(*) as headcount, sum(salary) as total_salary
+from employees
+group by dept
+order by total_salary DESC;
+
+
 
 
