@@ -118,10 +118,10 @@ JOIN students as s
 ON c.class_id = s.class_id;
 
 -- Q2 Show each student with their class name and teacher name.
-SELECT t.name, c.class_name 
-FROM classes as c 
-JOIN teachers as t 
-ON c.teacher_id = t.teacher_id;
+SELECT s.name AS student, c.class_name, t.name AS teacher
+FROM students AS s
+JOIN classes AS c ON s.class_id = c.class_id
+JOIN teachers AS t ON c.teacher_id = t.teacher_id;
 
 -- Q3 Show each student with their exam subject and marks
 SELECT s.name, e.subject , e.marks
@@ -131,19 +131,22 @@ ON s.student_id = e.student_id;
 
 -- Q4 Show students from Delhi along with their class name.
 SELECT s.name, c.class_name, s.city
-FROM students as s
-JOIN classes as c
-ON s.class_id = c.class_id;
+FROM students AS s
+JOIN classes AS c ON s.class_id = c.class_id
+WHERE s.city = 'Delhi';
 
 -- Q5 Show student name, class name, teacher name and their total marks across all exams.
-SELECT s.name as Student_name, t.name as Teacher_name, c.class_name, e.marks
-FROM students as s
-INNER JOIN classes as c 
-ON s.class_id = c.class_id
-INNER JOIN teachers as t
-ON c.teacher_id = t.teacher_id
-INNER JOIN exams as e
-ON s.student_id = e.student_id;
+-- Sahi query:
+SELECT s.name AS student_name, 
+       t.name AS teacher_name, 
+       c.class_name,
+       SUM(e.marks) AS total_marks
+FROM students AS s
+INNER JOIN classes AS c ON s.class_id = c.class_id
+INNER JOIN teachers AS t ON c.teacher_id = t.teacher_id
+INNER JOIN exams AS e ON s.student_id = e.student_id
+GROUP BY s.student_id, s.name, t.name, c.class_name
+ORDER BY total_marks DESC;
 
 -- Q6 Show ALL students and their exam marks. Students with no exams should also appear.
 SELECT s.name, e.marks
@@ -152,11 +155,10 @@ LEFT JOIN exams AS e
 ON s.student_id = e.student_id;
 
 -- Q7 Find students who have never appeared in any exam.
-SELECT *
-FROM exams AS e
-LEFT JOIN students AS s 
-ON e.student_id = s.student_id
-WHERE exam_id IS NULL; 
+SELECT s.name, s.city
+FROM students AS s
+LEFT JOIN exams AS e ON s.student_id = e.student_id
+WHERE e.exam_id IS NULL;
 
 -- Q8 Show all students with total fees paid. Students with no fee record should show 0.
 SELECT s.name, COALESCE(SUM(f.amount), 0) AS total_fees
@@ -172,10 +174,9 @@ LEFT JOIN classes AS c
 ON t.teacher_id = c.teacher_id;
 
 -- Q10 Show all students with count of exams appeared and total marks. Students with no exams show 0.
-SELECT e.exam_id, s.name, COALESCE(SUM(e.marks),0) AS TOTAL_MARKS, COUNT(e.exam_id) AS TOTAL_EXAM
+SELECT s.name,
+       COUNT(e.exam_id) AS total_exams,
+       COALESCE(SUM(e.marks), 0) AS total_marks
 FROM students AS s
-LEFT JOIN exams AS e
-ON s.student_id = e.student_id
-GROUP BY e.exam_id, s.student_id,s.name
-ORDER BY e.marks DESC;
-
+LEFT JOIN exams AS e ON s.student_id = e.student_id
+GROUP BY s.student_id, s.name
