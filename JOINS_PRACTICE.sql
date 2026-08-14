@@ -179,4 +179,23 @@ SELECT s.name,
        COALESCE(SUM(e.marks), 0) AS total_marks
 FROM students AS s
 LEFT JOIN exams AS e ON s.student_id = e.student_id
-GROUP BY s.student_id, s.name
+GROUP BY s.student_id, s.name;
+
+-- Q11 Show all classes and the students in them. Classes with no students should also appear.
+SELECT s.name, c.class_name
+FROM classes AS c 
+LEFT JOIN students AS s
+ON c.class_id = s.class_id;
+
+SELECT s.name, c.class_name
+FROM students AS s
+RIGHT JOIN classes AS c 
+ON c.class_id = s.class_id;
+
+-- Q12 Show all teachers and their assigned classes using RIGHT JOIN.
+SELECT t.name, c.class_name
+FROM classes AS c 
+RIGHT JOIN teachers AS t 
+ON c.teacher_id = t.teacher_id;
+
+
