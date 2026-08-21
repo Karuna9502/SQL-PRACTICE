@@ -258,4 +258,35 @@ RIGHT JOIN fees AS f
 ON s.student_id = f.student_id
 WHERE s.student_id IS NULL;
 
+-- Q19 Show pairs of students from the same city.
+SELECT s.name AS student1, c.name AS student2, s.city
+FROM students s
+JOIN students c
+ON s.city = c.city
+AND s.student_id < c.student_id;
+
+-- Q20 Show pairs of teachers from the same city.
+SELECT t.name AS teacher1, c.name AS student2, t.city
+FROM teachers AS t
+JOIN teachers AS c
+ON t.city = c.city 
+AND t.teacher_id > c.teacher_id;
+
+
+-- Q21 Find students who are in the same class as Rahul.
+SELECT s2.name AS classmate
+FROM students s1
+INNER JOIN students s2
+    ON s1.class_id = s2.class_id
+   AND s1.student_id != s2.student_id
+WHERE s1.name = 'Rahul';
+
+-- Q22 Find teachers who earn more than the average salary of all teachers in the same city.
+SELECT t1.name, t1.city, t1.salary
+FROM teachers t1
+WHERE t1.salary > (
+    SELECT AVG(t2.salary)
+    FROM teachers t2
+    WHERE t2.city = t1.city
+);
 
