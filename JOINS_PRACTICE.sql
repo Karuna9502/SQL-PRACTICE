@@ -198,4 +198,64 @@ FROM classes AS c
 RIGHT JOIN teachers AS t 
 ON c.teacher_id = t.teacher_id;
 
+-- Q13 Rewrite Q9 (all teachers with class) using RIGHT JOIN instead of LEFT JOIN.
+SELECT t.name, c.class_name
+FROM classes AS c
+RIGHT JOIN teachers AS t 
+ON t.teacher_id = c.teacher_id;
+
+-- Q14 Show all exams and the student who appeared. Include exams even if student record is missing.
+SELECT *
+FROM students AS s 
+RIGHT JOIN exams AS e 
+ON s.student_id = e.student_id;
+
+SELECT s.student_id, s.name, COUNT(*) AS exam_count
+FROM students AS s 
+RIGHT JOIN exams AS e 
+ON s.student_id = e.student_id
+GROUP BY s.student_id, s.name;
+
+-- Q15 Show all fee records and corresponding student name. Include fees even if student is deleted from the system.
+SELECT s.student_id, f.fee_id, s.name,f.status
+FROM students AS s
+RIGHT JOIN fees AS f 
+ON s.student_id = f.student_id;
+
+-- Q16 Show all students and all classes — even unmatched ones on both sides.
+-- IN MYSQL FULL OUTER JOIN DOES NOT SUPPORT 
+SELECT *
+FROM classes AS c
+LEFT JOIN students AS s 
+ON c.class_id = s.class_id
+UNION
+SELECT *
+FROM classes AS c
+RIGHT JOIN students AS s 
+ON c.class_id = s.class_id;
+
+-- Q17 Show all teachers and all classes — matched and unmatched both sides.
+SELECT * -- t.name, c.class_name
+FROM teachers AS t 
+LEFT JOIN classes AS c 
+ON t.teacher_id = c.teacher_id
+UNION 
+SELECT * -- t.name, c.class_name
+FROM teachers AS t 
+RIGHT JOIN classes AS c 
+ON t.teacher_id = c.teacher_id;
+
+-- Q18 Find students with no fees AND fees records with no student — using FULL JOIN.
+SELECT s.student_id, s.name, f.amount, f.paid_date
+FROM students AS s 
+LEFT JOIN fees AS f 
+ON s.student_id = f.student_id
+WHERE f.fee_id IS NULL
+UNION 
+SELECT s.student_id, s.name, f.amount, f.paid_date
+FROM students AS s 
+RIGHT JOIN fees AS f 
+ON s.student_id = f.student_id
+WHERE s.student_id IS NULL;
+
 
