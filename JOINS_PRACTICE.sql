@@ -290,6 +290,14 @@ WHERE t1.salary > (
     WHERE t2.city = t1.city
 );
 
+-- Q42 Find classes that have more than 1 student enrolled.
+SELECT c.class_name,
+       COUNT(s.student_id) AS student_count
+FROM classes c
+INNER JOIN students s ON c.class_id = s.class_id
+GROUP BY c.class_id, c.class_name
+HAVING COUNT(s.student_id) > 1;
+
 -- Q43 Find subjects where the highest marks scored is above 85.
 SELECT subject, sum(marks) AS total_marks, MAX(marks) AS max_marks
 FROM exams
