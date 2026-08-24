@@ -312,3 +312,16 @@ INNER JOIN exams e ON s.student_id = e.student_id
 GROUP BY s.student_id, s.name
 HAVING AVG(e.marks) BETWEEN 75 AND 90;
 
+-- Q45 FINAL: Show class name, teacher name, student count and avg marks — only for classes where avg marks > 75.
+SELECT c.class_name,
+       t.name AS teacher,
+       COUNT(DISTINCT s.student_id) AS students,
+       ROUND(AVG(e.marks), 2)       AS avg_marks
+FROM classes c
+INNER JOIN teachers t  ON c.teacher_id  = t.teacher_id
+INNER JOIN students s  ON s.class_id    = c.class_id
+INNER JOIN exams e     ON e.student_id  = s.student_id
+GROUP BY c.class_id, c.class_name, t.name
+HAVING AVG(e.marks) > 75
+ORDER BY avg_marks DESC;
+
