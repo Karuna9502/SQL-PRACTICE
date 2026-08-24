@@ -290,3 +290,11 @@ WHERE t1.salary > (
     WHERE t2.city = t1.city
 );
 
+-- Q44 Find students whose average marks across all exams is between 75 and 90.
+SELECT s.name,
+       ROUND(AVG(e.marks), 2) AS avg_marks
+FROM students s
+INNER JOIN exams e ON s.student_id = e.student_id
+GROUP BY s.student_id, s.name
+HAVING AVG(e.marks) BETWEEN 75 AND 90;
+
