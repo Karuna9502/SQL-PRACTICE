@@ -290,6 +290,12 @@ WHERE t1.salary > (
     WHERE t2.city = t1.city
 );
 
+-- Q43 Find subjects where the highest marks scored is above 85.
+SELECT subject, sum(marks) AS total_marks, MAX(marks) AS max_marks
+FROM exams
+GROUP BY subject
+HAVING max_marks > 85;
+
 -- Q44 Find students whose average marks across all exams is between 75 and 90.
 SELECT s.name,
        ROUND(AVG(e.marks), 2) AS avg_marks
