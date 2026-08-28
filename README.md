@@ -20,9 +20,9 @@
 |-------|-------|--------|
 | SELECT, WHERE, ORDER BY | ⭐ Beginner | 🔄 Active |
 | GROUP BY, HAVING | ⭐ Beginner | 🔄 Active |
-| JOINs (INNER, LEFT, RIGHT) | ⭐⭐ Intermediate | ⏳ Coming |
-| Subqueries | ⭐⭐ Intermediate | ⏳ Coming |
-| Window Functions | ⭐⭐⭐ Advanced | ⏳ Coming |
+| JOINs (INNER, LEFT, RIGHT) | ⭐⭐ Intermediate |🔄 Active |
+| Subqueries | ⭐⭐ Intermediate |🔄 Activeg |
+| Window Functions | ⭐⭐⭐ Advanced | 🔄 Active |
 | CTEs | ⭐⭐⭐ Advanced | ⏳ Coming |
 
 ---
